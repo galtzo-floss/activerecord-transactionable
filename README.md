@@ -330,7 +330,7 @@ See [LICENSE.md][📄license] for the official copyright notice.
 <details markdown="1">
 <summary>Copyright holders</summary>
 
-- Copyright (c) 2016-2018, 2021, 2024, 2026 Peter Boling
+- Copyright (c) 2016-2018, 2021, 2024, 2026 Peter H. Boling
 - Copyright (c) 2024 Annibelle Boling
 - Copyright (c) 2025 Aboling0
 
