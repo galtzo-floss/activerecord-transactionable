@@ -2,13 +2,21 @@
 
 ENV["RAILS_ENV"] = "test"
 begin
-  # This does not require "simplecov",
-  #   because that has a side-effect of running `.simplecov`
   require "kettle-soup-cover"
+  if Kettle::Soup::Cover::DO_COV
+    # Requiring simplecov loads the project-local `.simplecov`.
+    require "simplecov"
+    require "kettle/soup/cover/config"
+    SimpleCov.start
+  end
 rescue LoadError
+  # check the error message and re-raise when unexpected
   puts "Not running code coverage"
 end
 
+# External RSpec & related config
+require "kettle/test/rspec"
+# `kettle/test/rspec` installs harness helpers documented in spec/README.md.
 # External libraries
 require "rspec/block_is_expected"
 require "rspec/pending_for"
@@ -33,8 +41,6 @@ require "support/errors"
 require "support/plain_vanilla_ice_cream"
 
 # Last thing before this gem is code coverage:
-require "simplecov" if defined?(Kettle) && Kettle::Soup::Cover::DO_COV
-
 # This gem
 require "activerecord/transactionable"
 

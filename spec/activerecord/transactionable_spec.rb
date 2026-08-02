@@ -46,15 +46,15 @@ RSpec.describe Activerecord::Transactionable do
             args: 2,
             rescued_errors: [
               ActiveRecord::StatementInvalid,
-              ActiveRecord::RecordNotUnique,
-            ],
+              ActiveRecord::RecordNotUnique
+            ]
           )
         end
 
         it("raises ArgumentError") {
           block_is_expected.to raise_error(
             ArgumentError,
-            /should not rescue \[ActiveRecord::RecordInvalid, ActiveRecord::StatementInvalid, ActiveRecord::RecordNotUnique\] inside a transaction: \[:rescued_errors, :prepared_errors, :retriable_errors, :reraisable_errors, :num_retry_attempts\]/,
+            /should not rescue \[ActiveRecord::RecordInvalid, ActiveRecord::StatementInvalid, ActiveRecord::RecordNotUnique\] inside a transaction: \[:rescued_errors, :prepared_errors, :retriable_errors, :reraisable_errors, :num_retry_attempts\]/
           )
         }
       end
@@ -66,7 +66,7 @@ RSpec.describe Activerecord::Transactionable do
           TransactionableIceCream.log_with(logger) do
             TransactionableIceCream.new.do_something(
               args: 2,
-              requires_new: true,
+              requires_new: true
             )
           end
         end
@@ -85,7 +85,7 @@ RSpec.describe Activerecord::Transactionable do
             end
           end
           logs = [
-            "Will start a nested transaction.",
+            "Will start a nested transaction."
           ]
           expect(output).to include(*logs)
         end
@@ -156,7 +156,7 @@ RSpec.describe Activerecord::Transactionable do
           context: "outside",
           nested: false,
           error: "ActiveRecord::RecordInvalid",
-          message: "Validation failed: ",
+          message: "Validation failed: "
         })
       }
 
@@ -193,7 +193,7 @@ RSpec.describe Activerecord::Transactionable do
             context: "outside",
             nested: false,
             error: "ActiveRecord::RecordInvalid",
-            message: "Validation failed: ",
+            message: "Validation failed: "
           })
         }
 
@@ -210,7 +210,7 @@ RSpec.describe Activerecord::Transactionable do
             error: FarOutError,
             rescued_errors: FarOutError,
             object: object,
-            lock: true,
+            lock: true
           )
         }
       end
@@ -248,7 +248,7 @@ RSpec.describe Activerecord::Transactionable do
             context: "inside",
             nested: false,
             error: "FarOutError",
-            message: "FarOutError",
+            message: "FarOutError"
           })
         }
 
@@ -269,7 +269,7 @@ RSpec.describe Activerecord::Transactionable do
             tresult = TransactionableIceCream.new.raise_something(
               error: FarOutError,
               lock: true,
-              rescued_errors: FarOutError,
+              rescued_errors: FarOutError
             )
             expect(tresult.fail?).to be true
           }
@@ -278,7 +278,7 @@ RSpec.describe Activerecord::Transactionable do
             tresult = TransactionableIceCream.new.raise_something(
               error: FarOutError,
               lock: true,
-              rescued_errors: FarOutError,
+              rescued_errors: FarOutError
             )
             expect(tresult.to_h).to eq({
               attempt: 1,
@@ -287,7 +287,7 @@ RSpec.describe Activerecord::Transactionable do
               context: "inside",
               nested: false,
               error: "FarOutError",
-              message: "FarOutError",
+              message: "FarOutError"
             })
           }
 
@@ -318,7 +318,7 @@ RSpec.describe Activerecord::Transactionable do
                 TransactionableIceCream.new.raise_something(
                   error: FarOutError,
                   reraisable_errors: FarOutError,
-                  lock: true,
+                  lock: true
                 )
               end.to raise_error FarOutError
             }
@@ -329,7 +329,7 @@ RSpec.describe Activerecord::Transactionable do
                 TransactionableIceCream.new.raise_something(
                   error: FarOutError,
                   reraisable_errors: FarOutError,
-                  lock: true,
+                  lock: true
                 )
               end.to raise_error FarOutError
             }
@@ -356,7 +356,7 @@ RSpec.describe Activerecord::Transactionable do
                 TransactionableIceCream.new.raise_something(
                   error: FarOutError,
                   outside_reraisable_errors: FarOutError,
-                  lock: true,
+                  lock: true
                 )
               end.to raise_error FarOutError
             }
@@ -367,7 +367,7 @@ RSpec.describe Activerecord::Transactionable do
                 TransactionableIceCream.new.raise_something(
                   error: FarOutError,
                   outside_reraisable_errors: FarOutError,
-                  lock: true,
+                  lock: true
                 )
               end.to raise_error FarOutError
             }
@@ -396,7 +396,7 @@ RSpec.describe Activerecord::Transactionable do
                 context: "inside",
                 nested: false,
                 error: "FarOutError",
-                message: "FarOutError",
+                message: "FarOutError"
               })
             }
 
@@ -412,7 +412,7 @@ RSpec.describe Activerecord::Transactionable do
                   TransactionableIceCream.new.raise_something(
                     error: FarOutError,
                     retriable_errors: FarOutError,
-                    lock: true,
+                    lock: true
                   )
                 end.not_to raise_error
               }
@@ -421,7 +421,7 @@ RSpec.describe Activerecord::Transactionable do
                 tresult = TransactionableIceCream.new.raise_something(
                   error: FarOutError,
                   retriable_errors: FarOutError,
-                  lock: true,
+                  lock: true
                 )
                 expect(tresult.fail?).to be true
               }
@@ -430,7 +430,7 @@ RSpec.describe Activerecord::Transactionable do
                 tresult = TransactionableIceCream.new.raise_something(
                   error: FarOutError,
                   retriable_errors: FarOutError,
-                  lock: true,
+                  lock: true
                 )
                 expect(tresult.to_h).to eq({
                   attempt: 2,
@@ -439,7 +439,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "inside",
                   nested: false,
                   error: "FarOutError",
-                  message: "FarOutError",
+                  message: "FarOutError"
                 })
               }
 
@@ -449,7 +449,7 @@ RSpec.describe Activerecord::Transactionable do
                 TransactionableIceCream.new.raise_something(
                   error: FarOutError,
                   retriable_errors: FarOutError,
-                  lock: true,
+                  lock: true
                 )
               }
             end
@@ -479,7 +479,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "inside",
                   nested: true,
                   error: "FarOutError",
-                  message: "FarOutError",
+                  message: "FarOutError"
                 })
               }
 
@@ -495,7 +495,7 @@ RSpec.describe Activerecord::Transactionable do
                     TransactionableIceCream.new.raise_something(
                       error: FarOutError,
                       retriable_errors: FarOutError,
-                      lock: true,
+                      lock: true
                     )
                   end
                 end
@@ -514,7 +514,7 @@ RSpec.describe Activerecord::Transactionable do
                     context: "inside",
                     nested: true,
                     error: "FarOutError",
-                    message: "FarOutError",
+                    message: "FarOutError"
                   })
                 }
 
@@ -549,7 +549,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "inside",
                   nested: false,
                   error: "FarOutError",
-                  message: "FarOutError",
+                  message: "FarOutError"
                 })
               }
 
@@ -574,7 +574,7 @@ RSpec.describe Activerecord::Transactionable do
                     context: "inside",
                     nested: false,
                     error: "FarOutError",
-                    message: "FarOutError",
+                    message: "FarOutError"
                   })
                 }
 
@@ -599,7 +599,7 @@ RSpec.describe Activerecord::Transactionable do
             it("is fail") {
               tresult = TransactionableIceCream.new.raise_something(
                 error: FarOutError,
-                outside_retriable_errors: FarOutError,
+                outside_retriable_errors: FarOutError
               )
               expect(tresult.fail?).to be true
             }
@@ -607,7 +607,7 @@ RSpec.describe Activerecord::Transactionable do
             it("has diagnostic information") {
               tresult = TransactionableIceCream.new.raise_something(
                 error: FarOutError,
-                outside_retriable_errors: FarOutError,
+                outside_retriable_errors: FarOutError
               )
               expect(tresult.to_h).to eq({
                 attempt: 2,
@@ -616,7 +616,7 @@ RSpec.describe Activerecord::Transactionable do
                 context: "outside",
                 nested: false,
                 error: "FarOutError",
-                message: "FarOutError",
+                message: "FarOutError"
               })
             }
 
@@ -632,7 +632,7 @@ RSpec.describe Activerecord::Transactionable do
                   TransactionableIceCream.new.raise_something(
                     error: FarOutError,
                     outside_retriable_errors: FarOutError,
-                    lock: true,
+                    lock: true
                   )
                 end.not_to raise_error
               }
@@ -641,7 +641,7 @@ RSpec.describe Activerecord::Transactionable do
                 tresult = TransactionableIceCream.new.raise_something(
                   error: FarOutError,
                   outside_retriable_errors: FarOutError,
-                  lock: true,
+                  lock: true
                 )
                 expect(tresult.fail?).to be true
               }
@@ -650,7 +650,7 @@ RSpec.describe Activerecord::Transactionable do
                 tresult = TransactionableIceCream.new.raise_something(
                   error: FarOutError,
                   outside_retriable_errors: FarOutError,
-                  lock: true,
+                  lock: true
                 )
                 expect(tresult.to_h).to eq({
                   attempt: 2,
@@ -659,7 +659,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "outside",
                   nested: false,
                   error: "FarOutError",
-                  message: "FarOutError",
+                  message: "FarOutError"
                 })
               }
 
@@ -669,7 +669,7 @@ RSpec.describe Activerecord::Transactionable do
                 TransactionableIceCream.new.raise_something(
                   error: FarOutError,
                   outside_retriable_errors: FarOutError,
-                  lock: true,
+                  lock: true
                 )
               }
             end
@@ -699,7 +699,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "outside",
                   nested: false,
                   error: "FarOutError",
-                  message: "FarOutError",
+                  message: "FarOutError"
                 })
               }
 
@@ -724,7 +724,7 @@ RSpec.describe Activerecord::Transactionable do
                     context: "outside",
                     nested: false,
                     error: "FarOutError",
-                    message: "FarOutError",
+                    message: "FarOutError"
                   })
                 }
 
@@ -759,7 +759,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "outside",
                   nested: true,
                   error: "FarOutError",
-                  message: "FarOutError",
+                  message: "FarOutError"
                 })
               }
 
@@ -775,7 +775,7 @@ RSpec.describe Activerecord::Transactionable do
                     TransactionableIceCream.new.raise_something(
                       error: FarOutError,
                       outside_retriable_errors: FarOutError,
-                      lock: true,
+                      lock: true
                     )
                   end
                 end
@@ -794,7 +794,7 @@ RSpec.describe Activerecord::Transactionable do
                     context: "outside",
                     nested: true,
                     error: "FarOutError",
-                    message: "FarOutError",
+                    message: "FarOutError"
                   })
                 }
 
@@ -823,7 +823,7 @@ RSpec.describe Activerecord::Transactionable do
             tresult = TransactionableIceCream.raise_something(
               error: FarOutError,
               object: object,
-              rescued_errors: FarOutError,
+              rescued_errors: FarOutError
             )
             expect(tresult.fail?).to be true
           }
@@ -832,7 +832,7 @@ RSpec.describe Activerecord::Transactionable do
             tresult = TransactionableIceCream.raise_something(
               error: FarOutError,
               object: object,
-              rescued_errors: FarOutError,
+              rescued_errors: FarOutError
             )
             expect(tresult.to_h).to eq({
               attempt: 1,
@@ -841,7 +841,7 @@ RSpec.describe Activerecord::Transactionable do
               context: "inside",
               nested: false,
               error: "FarOutError",
-              message: "FarOutError",
+              message: "FarOutError"
             })
           }
 
@@ -862,7 +862,7 @@ RSpec.describe Activerecord::Transactionable do
                   error: FarOutError,
                   object: object,
                   lock: true,
-                  rescued_errors: FarOutError,
+                  rescued_errors: FarOutError
                 )
               end.not_to raise_error
             }
@@ -872,7 +872,7 @@ RSpec.describe Activerecord::Transactionable do
                 error: FarOutError,
                 object: object,
                 lock: true,
-                rescued_errors: FarOutError,
+                rescued_errors: FarOutError
               )
               expect(tresult.fail?).to be true
             }
@@ -882,7 +882,7 @@ RSpec.describe Activerecord::Transactionable do
                 error: FarOutError,
                 object: object,
                 lock: true,
-                rescued_errors: FarOutError,
+                rescued_errors: FarOutError
               )
               expect(tresult.to_h).to eq({
                 attempt: 1,
@@ -891,7 +891,7 @@ RSpec.describe Activerecord::Transactionable do
                 context: "inside",
                 nested: false,
                 error: "FarOutError",
-                message: "FarOutError",
+                message: "FarOutError"
               })
             }
 
@@ -900,7 +900,7 @@ RSpec.describe Activerecord::Transactionable do
                 error: FarOutError,
                 object: object,
                 lock: true,
-                rescued_errors: FarOutError,
+                rescued_errors: FarOutError
               )
               expect(object.errors.full_messages).to eq ["FarOutError"]
             }
@@ -911,7 +911,7 @@ RSpec.describe Activerecord::Transactionable do
                 error: FarOutError,
                 object: object,
                 lock: true,
-                rescued_errors: FarOutError,
+                rescued_errors: FarOutError
               )
             }
           end
@@ -928,7 +928,7 @@ RSpec.describe Activerecord::Transactionable do
             tresult = TransactionableIceCream.raise_something(
               error: FarOutError,
               object: nil,
-              rescued_errors: FarOutError,
+              rescued_errors: FarOutError
             )
             expect(tresult.fail?).to be true
           }
@@ -937,7 +937,7 @@ RSpec.describe Activerecord::Transactionable do
             tresult = TransactionableIceCream.raise_something(
               error: FarOutError,
               object: nil,
-              rescued_errors: FarOutError,
+              rescued_errors: FarOutError
             )
             expect(tresult.to_h).to eq({
               attempt: 1,
@@ -946,7 +946,7 @@ RSpec.describe Activerecord::Transactionable do
               context: "inside",
               nested: false,
               error: "FarOutError",
-              message: "FarOutError",
+              message: "FarOutError"
             })
           }
 
@@ -994,7 +994,7 @@ RSpec.describe Activerecord::Transactionable do
                   error: FarOutError,
                   reraisable_errors: FarOutError,
                   object: object,
-                  lock: true,
+                  lock: true
                 )
               end.to raise_error FarOutError
             }
@@ -1006,7 +1006,7 @@ RSpec.describe Activerecord::Transactionable do
                   error: FarOutError,
                   reraisable_errors: FarOutError,
                   object: object,
-                  lock: true,
+                  lock: true
                 )
               end.to raise_error FarOutError
             }
@@ -1036,7 +1036,7 @@ RSpec.describe Activerecord::Transactionable do
                   error: FarOutError,
                   outside_reraisable_errors: FarOutError,
                   object: object,
-                  lock: true,
+                  lock: true
                 )
               end.to raise_error FarOutError
             }
@@ -1048,7 +1048,7 @@ RSpec.describe Activerecord::Transactionable do
                   error: FarOutError,
                   outside_reraisable_errors: FarOutError,
                   object: object,
-                  lock: true,
+                  lock: true
                 )
               end.to raise_error FarOutError
             }
@@ -1077,7 +1077,7 @@ RSpec.describe Activerecord::Transactionable do
                 context: "inside",
                 nested: false,
                 error: "FarOutError",
-                message: "FarOutError",
+                message: "FarOutError"
               })
             }
 
@@ -1112,7 +1112,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "inside",
                   nested: true,
                   error: "FarOutError",
-                  message: "FarOutError",
+                  message: "FarOutError"
                 })
               }
 
@@ -1146,7 +1146,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "inside",
                   nested: false,
                   error: "FarOutError",
-                  message: "FarOutError",
+                  message: "FarOutError"
                 })
               }
             end
@@ -1164,7 +1164,7 @@ RSpec.describe Activerecord::Transactionable do
             it("is fail") {
               tresult = TransactionableIceCream.raise_something(
                 error: FarOutError,
-                outside_retriable_errors: FarOutError,
+                outside_retriable_errors: FarOutError
               )
               expect(tresult.fail?).to be true
             }
@@ -1172,7 +1172,7 @@ RSpec.describe Activerecord::Transactionable do
             it("has diagnostic information") {
               tresult = TransactionableIceCream.raise_something(
                 error: FarOutError,
-                outside_retriable_errors: FarOutError,
+                outside_retriable_errors: FarOutError
               )
               expect(tresult.to_h).to eq({
                 attempt: 2,
@@ -1181,7 +1181,7 @@ RSpec.describe Activerecord::Transactionable do
                 context: "outside",
                 nested: false,
                 error: "FarOutError",
-                message: "FarOutError",
+                message: "FarOutError"
               })
             }
 
@@ -1216,7 +1216,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "outside",
                   nested: false,
                   error: "FarOutError",
-                  message: "FarOutError",
+                  message: "FarOutError"
                 })
               }
             end
@@ -1244,7 +1244,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "outside",
                   nested: true,
                   error: "FarOutError",
-                  message: "FarOutError",
+                  message: "FarOutError"
                 })
               }
 
@@ -1263,7 +1263,7 @@ RSpec.describe Activerecord::Transactionable do
               TransactionableIceCream.do_switch(
                 args: "fish",
                 retriable_errors: FirstTimeError,
-                rescued_errors: OnRetryError,
+                rescued_errors: OnRetryError
               )
             end.not_to raise_error
           }
@@ -1272,7 +1272,7 @@ RSpec.describe Activerecord::Transactionable do
             tresult = TransactionableIceCream.do_switch(
               args: "wolf",
               retriable_errors: FirstTimeError,
-              rescued_errors: OnRetryError,
+              rescued_errors: OnRetryError
             )
             expect(tresult.fail?).to be true
           }
@@ -1281,7 +1281,7 @@ RSpec.describe Activerecord::Transactionable do
             tresult = TransactionableIceCream.do_switch(
               args: "wolf",
               retriable_errors: FirstTimeError,
-              rescued_errors: OnRetryError,
+              rescued_errors: OnRetryError
             )
             expect(tresult.to_h).to eq({
               attempt: 2,
@@ -1290,7 +1290,7 @@ RSpec.describe Activerecord::Transactionable do
               context: "inside",
               nested: false,
               error: "OnRetryError",
-              message: "it is a retry with wolf",
+              message: "it is a retry with wolf"
             })
           }
 
@@ -1318,7 +1318,7 @@ RSpec.describe Activerecord::Transactionable do
               TransactionableIceCream.do_switch(
                 args: "bear",
                 retriable_errors: FirstTimeError,
-                rescued_errors: OnRetryError,
+                rescued_errors: OnRetryError
               )
             }
           end
@@ -1330,7 +1330,7 @@ RSpec.describe Activerecord::Transactionable do
                   TransactionableIceCream.do_switch(
                     args: "fox",
                     outside_retriable_errors: FirstTimeError,
-                    outside_rescued_errors: OnRetryError,
+                    outside_rescued_errors: OnRetryError
                   )
                 end.not_to raise_error
               }
@@ -1339,7 +1339,7 @@ RSpec.describe Activerecord::Transactionable do
                 tresult = TransactionableIceCream.do_switch(
                   args: "turtle",
                   outside_retriable_errors: FirstTimeError,
-                  outside_rescued_errors: OnRetryError,
+                  outside_rescued_errors: OnRetryError
                 )
                 expect(tresult.fail?).to be true
               }
@@ -1348,7 +1348,7 @@ RSpec.describe Activerecord::Transactionable do
                 tresult = TransactionableIceCream.do_switch(
                   args: "turtle",
                   outside_retriable_errors: FirstTimeError,
-                  outside_rescued_errors: OnRetryError,
+                  outside_rescued_errors: OnRetryError
                 )
                 expect(tresult.to_h).to eq({
                   attempt: 2,
@@ -1357,7 +1357,7 @@ RSpec.describe Activerecord::Transactionable do
                   context: "outside",
                   nested: false,
                   error: "OnRetryError",
-                  message: "it is a retry with turtle",
+                  message: "it is a retry with turtle"
                 })
               }
 

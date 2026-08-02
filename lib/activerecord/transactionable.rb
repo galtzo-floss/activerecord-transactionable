@@ -28,7 +28,7 @@ module Activerecord
     ERRORS_TO_DISALLOW_INSIDE_TRANSACTION = [
       ActiveRecord::RecordInvalid,
       ActiveRecord::StatementInvalid,
-      ActiveRecord::RecordNotUnique,
+      ActiveRecord::RecordNotUnique
     ].freeze
     # http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/DatabaseStatements.html#method-i-transaction
     TRANSACTION_METHOD_ARG_NAMES = %i[
@@ -83,14 +83,14 @@ module Activerecord
         error_handler_outside_transaction(
           object: object,
           transaction_open: transaction_open,
-          **outside_args,
+          **outside_args
         ) do |outside_is_retry|
           run_inside_transaction_block(
             transaction_args: transaction_args,
             inside_args: inside_args,
             lock: lock,
             transaction_open: transaction_open,
-            object: object,
+            object: object
           ) do |is_retry|
             # regardless of the retry being inside or outside the transaction, it is still a retry.
             yield outside_is_retry || is_retry
@@ -217,7 +217,7 @@ module Activerecord
             result: nil,
             attempt: attempt,
             add_to: nil,
-            additional_message: " [#{transaction_open ? "nested " : ""}#{local_context} re-raising!]",
+            additional_message: " [#{"nested " if transaction_open}#{local_context} re-raising!]"
           )
           raise e
         rescue *retriable_errors => e
@@ -230,7 +230,7 @@ module Activerecord
               object: object,
               error: e,
               result: result,
-              additional_message: " [#{transaction_open ? "nested " : ""}#{local_context}]",
+              additional_message: " [#{"nested " if transaction_open}#{local_context}]"
             )
             result
           else
@@ -243,7 +243,7 @@ module Activerecord
               result: nil,
               attempt: attempt,
               add_to: nil,
-              additional_message: " [#{transaction_open ? "nested " : ""}#{local_context}]",
+              additional_message: " [#{"nested " if transaction_open}#{local_context}]"
             )
             retry
           end
@@ -254,7 +254,7 @@ module Activerecord
             object: nil,
             error: e,
             result: result,
-            additional_message: " [#{transaction_open ? "nested " : ""}#{local_context}]",
+            additional_message: " [#{"nested " if transaction_open}#{local_context}]"
           )
           result
         rescue *needing_added_to_self => e
@@ -263,7 +263,7 @@ module Activerecord
             object: object,
             error: e,
             result: result,
-            additional_message: " [#{transaction_open ? "nested " : ""}#{local_context}]",
+            additional_message: " [#{"nested " if transaction_open}#{local_context}]"
           )
           result
         end
