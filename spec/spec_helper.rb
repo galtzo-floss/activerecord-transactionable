@@ -24,7 +24,7 @@ require "rspec-benchmark"
 require "silent_stream"
 
 # 3rd Party Lib Configs
-require "config/byebug"
+require "debug"
 require "config/active_record"
 require "config/factory_bot"
 
