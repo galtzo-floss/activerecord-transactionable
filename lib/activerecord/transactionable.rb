@@ -7,8 +7,8 @@ require "active_record"
 require "active_record/validations"
 
 # This gem
-require "activerecord/transactionable/version"
 require "activerecord/transactionable/result"
+require_relative "transactionable/version"
 
 # Note lowercase "r" in Activerecord (different namespace than rails' module)
 module Activerecord
