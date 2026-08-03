@@ -1,0 +1,32 @@
+{
+  "action: remove_modular_gem\nreason: \"The gemspec owns the project's documentation dependency.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        97,
+        107,
+        112
+      ]
+    }
+  ],
+  "direct: activerecord-transactionable.gemspec\nmodular: gemfiles/modular/documentation.gemfile": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        95,
+        105,
+        110
+      ]
+    }
+  ],
+  "modular: gemfiles/modular/documentation.gemfile\naction: remove_modular_gem": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        96,
+        106,
+        111
+      ]
+    }
+  ]
+}
