@@ -39,7 +39,7 @@ module Activerecord
       end
 
       def to_s(skip_error: nil)
-        to_h(skip_error: skip_error).to_s
+        to_h(skip_error: skip_error).map { |key, value| "#{key.inspect}=>#{value.inspect}" }.join(", ").prepend("{").concat("}")
       end
     end
   end
