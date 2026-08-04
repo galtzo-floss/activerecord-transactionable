@@ -146,7 +146,7 @@ template_state:
     gemfiles/modular/stringio/vHEAD.gemfile.example: e0497ab6dad9667b22725485b781e9d99349a079250eb29cb125d58f01f4a5be
     gemfiles/modular/style.gemfile.example: a15db732f566d958c2459ef549ae3877d984df3d205116e714284d1fe4f9b068
     gemfiles/modular/style_local.gemfile.example: '0083605323d23879dc7223f0198e9f1db24a25fa38730c4dbcc71c7a8a4c307f'
-    gemfiles/modular/templating.gemfile.example: f63e9254dcd76f02406fff515090570d2394dae220faac4f9b3cad6c1a78346a
+    gemfiles/modular/templating.gemfile.example: 3b2db799f879401ec595c54a5c3ca825b1f51a9e8976b932f80f12a06ea9791d
     gemfiles/modular/templating_local.gemfile.example: 84b328af40ee4f9b0355cd5b466f7c7903c49f86e9eb0d1bc3a1f34c8f0f1668
     gemfiles/modular/webrick/r4/v1.9.gemfile.example: 1ee940ff54d5ca3ce7fcff0d82ee9553386979656b9e220d5be5404d0991d5ea
     gemfiles/modular/webrick/vHEAD.gemfile.example: da545f591af987648ffbaba181707480a38dfb375db7d289617986ec2c2ca23b
@@ -761,7 +761,7 @@ files:
     recipe: template_source_application_activerecord_transactionable_gemspec
     action: write
     dest_sha256: 0ae5ab503e5e6ba9bf8e258fa147be195e4790a54045566136108c8b3d8d8b48
-    input_fingerprint: eb45e09d014d348b1b43508d901cc142bc18615a2603e67656fe95f174cf386e
+    input_fingerprint: 06d5a5a2756d76fffcd55b82ff2dc28de0a5f817149f72ced9f49b029cc2eb5b
     template_sources:
     - gem.gemspec.example
   bin/setup:
@@ -998,8 +998,8 @@ files:
   gemfiles/modular/templating.gemfile:
     recipe: template_source_application_gemfiles_modular_templating_gemfile
     action: write
-    dest_sha256: f63e9254dcd76f02406fff515090570d2394dae220faac4f9b3cad6c1a78346a
-    input_fingerprint: 856731fc7143402170079b40a4028ec65958563bb9100fc2a16774043759f6bb
+    dest_sha256: 3b2db799f879401ec595c54a5c3ca825b1f51a9e8976b932f80f12a06ea9791d
+    input_fingerprint: 1436070795ef716795f29aba13f4ccafb5d496f49d0c9dfd9e178ee3ede013c4
     template_sources:
     - gemfiles/modular/templating.gemfile.example
   gemfiles/modular/templating_local.gemfile:
@@ -1076,7 +1076,7 @@ files:
     recipe: template_source_application_lib_activerecord_transactionable_version_rb
     action: write
     dest_sha256: c77d796abb1a2563c3c973a3636756cc931f2ed0efd6555823cc19c1e43ffe7a
-    input_fingerprint: bb1493af2535a711420291c772d803e9a005382bd71330bad543e4bf1b20bab1
+    input_fingerprint: 35dcae353ca9500f8c3dd0948485b9b27f30be7dbc82e51e9c74161ef5247b85
     template_sources:
     - lib/gem/version.rb.example
   mise.toml:
