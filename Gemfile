@@ -18,9 +18,6 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from activerecord-transactionable.gemspec
 gemspec
 
-# The default development bundle uses the SQLite 1.x test adapter.
-gem "activerecord", "~> 7.2"
-
 gem "kettle-family", "~> 1.2", ">= 1.2.23"
 
 # Local workspace dependency wiring for *_local.gemfile overrides

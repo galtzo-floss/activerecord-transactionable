@@ -24,7 +24,7 @@ require "rspec-benchmark"
 require "silent_stream"
 
 # 3rd Party Lib Configs
-require "debug"
+require "debug" if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.7")
 require "config/active_record"
 require "config/factory_bot"
 
