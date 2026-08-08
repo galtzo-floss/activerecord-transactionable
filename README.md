@@ -21,6 +21,10 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 
 ## 🌻 Synopsis <a href="https://discord.gg/3qme4XHNKN"><img alt="Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px.svg" width="8%" align="right"/></a> <a href="https://ruby-toolbox.com"><img alt="ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5" src="https://logos.galtzo.com/assets/images/ruby-lang/avatar-128px.svg" width="8%" align="right"/></a>
 
+Activerecord::Transactionable wraps ActiveRecord work in transactions while
+handling retries, nested transactions, optional row locking, and useful result
+objects for callers that need to inspect success or failure.
+
 ## 💡 Info you can shake a stick at
 
 | Tokens to Remember | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace] |
@@ -118,6 +122,11 @@ gem install activerecord-transactionable
 ```
 
 ## ⚙️ Configuration
+
+Include `Activerecord::Transactionable` in the model or service object that owns
+the operation. Configure a call with `transaction_wrapper` options such as
+`lock: true`, `requires_new: true`, retry settings, and the error-handling
+options supported by the wrapper. There is no global initializer.
 
 ## 🔧 Basic Usage
 
