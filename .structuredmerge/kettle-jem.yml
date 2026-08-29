@@ -259,6 +259,11 @@ workflows:
   #       requirement: ">= 8.0"
   #   gemfile_pattern: "ar-{version}.x"
 
+test_bundle:
+  gems:
+    - name: activerecord
+      requirement: "~> 7.2"
+
 # Project-level third-party integrations.
 # Disabling an integration removes its upload/check action, suppresses its
 # README badges, skips templating its packaged config/workflow, and cleans up
