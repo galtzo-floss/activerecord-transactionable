@@ -101,6 +101,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,
   preserving comments and trailing commas during template updates.
 
+- Restore the default ActiveRecord test matrix removed by an earlier template pass.
+
 ### Security
 
 [Unreleased]: https://gitlab.com/galtzo-floss/activerecord-transactionable/-/compare/HEAD

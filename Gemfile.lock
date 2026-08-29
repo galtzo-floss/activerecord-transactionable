@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/pboling/rubocop-packaging.git
+  remote: git@github.com:pboling/rubocop-packaging.git
   revision: 3539ba858d379740d638566faee9e56b2b854145
   ref: 3539ba858d379740d638566faee9e56b2b854145
   specs:
@@ -18,25 +18,24 @@ PATH
 GEM
   remote: https://gem.coop/
   specs:
-    activemodel (8.1.3.1)
-      activesupport (= 8.1.3.1)
-    activerecord (8.1.3.1)
-      activemodel (= 8.1.3.1)
-      activesupport (= 8.1.3.1)
+    activemodel (7.2.3)
+      activesupport (= 7.2.3)
+    activerecord (7.2.3)
+      activemodel (= 7.2.3)
+      activesupport (= 7.2.3)
       timeout (>= 0.4.0)
-    activesupport (8.1.3.1)
+    activesupport (7.2.3)
       base64
+      benchmark (>= 0.3)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.3.1)
       connection_pool (>= 2.2.5)
       drb
       i18n (>= 1.6, < 2)
-      json
       logger (>= 1.4.2)
       minitest (>= 5.1)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
-      uri (>= 0.13.1)
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     anonymous_loader (0.1.3)
@@ -554,7 +553,6 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
-    uri (1.1.1)
     version_gem (1.1.15)
     webrick (1.9.2)
     yaml-converter (0.2.5)
@@ -588,6 +586,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activerecord (~> 7.2)
   activerecord-transactionable!
   addressable (>= 2.8, < 3)
   anonymous_loader (~> 0.1, >= 0.1.3)
@@ -644,10 +643,10 @@ DEPENDENCIES
   yard-yaml (~> 0.2, >= 0.2.5)
 
 CHECKSUMS
-  activemodel (8.1.3.1) sha256=99cc02ce2faec371d14440949d85787ebd23a907c9baef0a9d4bcd4d21888f88
-  activerecord (8.1.3.1) sha256=0a2fb6c28f4938f6b013a3a549bec0a7e37d535f3dc8990e804bcc3258c0403b
+  activemodel (7.2.3) sha256=bbaf66aeb93212e98ebf6ab900f8290f9a831645f0b235427f5acf0e074739db
+  activerecord (7.2.3) sha256=6facb7478ceb5f6baa9f0647daa50b4a3a43934997900f0011e6c667ff41a0d7
   activerecord-transactionable (3.0.4)
-  activesupport (8.1.3.1) sha256=85458765f25ea48b9019c46b6bb3fa5683197bf4280d9f06710a6e8d7a831376
+  activesupport (7.2.3) sha256=5675c9770dac93e371412684249f9dc3c8cec104efd0624362a520ae685c7b10
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
   anonymous_loader (0.1.3) sha256=084a18e2439144d955447dc11dfc982f41fcd1583ad32d4d55151325dc44cb55
   ansi (1.6.0) sha256=ac9ea0c0ea8d32fb4e271348e609963ac78882f34b73836c2a02b3622e666658
@@ -825,7 +824,6 @@ CHECKSUMS
   turbo_tests2 (3.2.7) sha256=b0fbc681d15aa1aa8158d7826575155d2fc084124a1903b45db02a0ea9a9c0e7
   tzinfo (2.0.6) sha256=8daf828cc77bcf7d63b0e3bdb6caa47e2272dcfaf4fbfe46f8c3a9df087a829b
   unicode-display_width (2.6.0) sha256=12279874bba6d5e4d2728cef814b19197dbb10d7a7837a869bab65da943b7f5a
-  uri (1.1.1) sha256=379fa58d27ffb1387eaada68c749d1426738bd0f654d812fcc07e7568f5c57c6
   version_gem (1.1.15) sha256=a73241587b29252e3567e0c818ded80730eb754d43b508f6ce4db22ca9ba27d0
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
   yaml-converter (0.2.5) sha256=a5214fe1a6c2df88bd34a35bcded1b1dcd30135548130df2e03b54ca8c0f2423

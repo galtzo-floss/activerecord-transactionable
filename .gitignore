@@ -21,6 +21,9 @@ Appraisal.*.gemfile.lock
 /results/
 .output.txt
 
+# Rails runtime logs
+/log/
+
 # Documentation
 /.yardoc/
 /_yardoc/
