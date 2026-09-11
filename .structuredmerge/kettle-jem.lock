@@ -682,7 +682,7 @@ files:
   CHANGELOG.md:
     recipe: template_source_application_CHANGELOG_md
     action: write
-    dest_sha256: 33c1236f86c0813e37f30f44fd2e28371b04380f53ef8d18f2546cf5a1d7c272
+    dest_sha256: 0b9ba41561e258f90ae825032e13663e053fa41f992c19b2a39ca8b9e2f24e35
     input_fingerprint: edb6ae8d3f995392680e35e220378cc265d9fc450812a48c997edc79961d5eaa
     template_sources:
     - CHANGELOG.md.example
@@ -765,7 +765,7 @@ files:
   Rakefile:
     recipe: template_source_application_Rakefile
     action: write
-    dest_sha256: 6b96fb3261a573eabc6abd658348ba988d3d021467bdfa66bc47eb5791dd27c8
+    dest_sha256: 371d367adac5ea454a86e3dec8791159a07f166f9cb1cabfb39cadf120dd4f8e
     input_fingerprint: 79ab107c916218f6fa077eb24b69154702085f225e3b44ce5de362d7d972c16d
     template_sources:
     - Rakefile.example
