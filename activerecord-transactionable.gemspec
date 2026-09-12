@@ -171,6 +171,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("rspec_junit_formatter", "~> 0.6")
   spec.add_development_dependency("rspec-pending_for", ">= 0.1.28")
   spec.add_development_dependency("silent_stream", ">= 1")
-  spec.add_development_dependency("sqlite3", "~> 1")
+  spec.add_development_dependency("sqlite3", ">= 1.4", "< 3")
   spec.add_development_dependency("yard", "~> 0.9", ">= 0.9.34")
 end
