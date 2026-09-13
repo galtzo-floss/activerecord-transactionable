@@ -6,7 +6,7 @@
     [336, 12, 2, "Lint/LtsRuby/UnavailableMethod: Method/Proc#<< is unavailable before Ruby 2.6.", 5859461],
     [360, 12, 2, "Lint/LtsRuby/UnavailableMethod: Method/Proc#<< is unavailable before Ruby 2.6.", 5859461]
   ],
-  "activerecord-transactionable.gemspec:1558720376": [
+  "activerecord-transactionable.gemspec:542272470": [
     [44, 24, 9, "Lint/LtsRuby/UnavailableMethod: Symbol#end_with? is unavailable before Ruby 2.7.", 308216808],
     [50, 16, 16, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 3147164910],
     [51, 16, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 279056797],
