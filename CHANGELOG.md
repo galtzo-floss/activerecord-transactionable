@@ -100,4 +100,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
+- Raised the `activerecord` floor to `~> 7.2.2, >= 7.2.2.2` in the Gemfile. The
+  prior `~> 7.2` constraint permitted `7.2.0`-`7.2.2.1`, affected by a
+  moderate-severity ANSI escape injection advisory in Active Record logging,
+  fixed upstream in 7.2.2.2. The resolved/locked version was already patched;
+  this closes the gap so a future `bundle update` cannot regress into it.
+
 [Unreleased]: https://gitlab.com/galtzo-floss/activerecord-transactionable/-/compare/HEAD

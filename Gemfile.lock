@@ -603,7 +603,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  activerecord (~> 7.2)
+  activerecord (~> 7.2.2, >= 7.2.2.2)
   activerecord-transactionable!
   addressable (>= 2.8, < 3)
   anonymous_loader (~> 0.1, >= 0.1.3)
