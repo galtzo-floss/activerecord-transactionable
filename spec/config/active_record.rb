@@ -29,11 +29,14 @@ ActiveRecord::Schema.verbose = false
 adapter = ENV["DB"] || "sqlite"
 yaml_config = YAML.load_file(test_dir.join("database.yml"))[adapter]
 
-# if RUBY_PLATFORM == "java"
-#   yaml_config["sqlite"]["adapter"] = "jdbcsqlite3"
-#   yaml_config["mysql"]["adapter"] = "jdbcmysql"
-#   yaml_config["postgresql"]["adapter"] = "jdbcpostgresql"
-# end
+if RUBY_PLATFORM == "java"
+  require "activerecord-jdbcsqlite3-adapter" if yaml_config["adapter"] == "sqlite3"
+  # activerecord-jdbc-adapter registers jdbc* adapter names before ActiveRecord 7.2;
+  # from 7.2 (adapter 72.x) it provides the standard sqlite3 adapter name.
+  if ActiveRecord.gem_version < Gem::Version.new("7.2")
+    yaml_config.store("adapter", yaml_config["adapter"].sub(/\A(sqlite3|mysql2|postgresql)\z/) { "jdbc#{Regexp.last_match(1).sub("mysql2", "mysql")}" })
+  end
+end
 config = ActiveRecord::DatabaseConfigurations::HashConfig.new("test", adapter, yaml_config)
 ActiveRecord::Base.configurations.configurations << config
 
