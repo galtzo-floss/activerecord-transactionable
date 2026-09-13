@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Activerecord::Transactionable
+  
+    &mdash; Documentation by YARD 0.9.45
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css">
+
+<script type="text/javascript">
+  pathId = "Activerecord::Transactionable";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Activerecord.html" title="Activerecord (module)">Activerecord</a></span></span>
+     &raquo; 
+    <span class="title">Transactionable</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Activerecord::Transactionable
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  <dl>
+      <dt>Extended by:</dt>
+      <dd>ActiveSupport::Concern</dd>
+  </dl>
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/activerecord/transactionable.rb<span class="defines">,<br>
+  lib/activerecord/transactionable/result.rb,<br> lib/activerecord/transactionable/version.rb</span>
+
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>SRP: Provides an example of correct behavior for wrapping transactions.<br />
+NOTE: Rails’ transactions are per-database connection, not per-model, nor per-instance,<br />
+      see: http://api.rubyonrails.org/classes/ActiveRecord/Transactions/ClassMethods.html</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Transactionable/ClassMethods.html" title="Activerecord::Transactionable::ClassMethods (module)">ClassMethods</a></span>, <span class='object_link'><a href="Transactionable/Version.html" title="Activerecord::Transactionable::Version (module)">Version</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Transactionable/Result.html" title="Activerecord::Transactionable::Result (class)">Result</a></span>
+    
+  
+</p>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="DEFAULT_NUM_RETRY_ATTEMPTS-constant" class="">DEFAULT_NUM_RETRY_ATTEMPTS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>2</span></pre></dd>
+      
+        <dt id="DEFAULT_ERRORS_TO_HANDLE_INSIDE_TRANSACTION-constant" class="">DEFAULT_ERRORS_TO_HANDLE_INSIDE_TRANSACTION =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="DEFAULT_ERRORS_PREPARE_ON_SELF_INSIDE-constant" class="">DEFAULT_ERRORS_PREPARE_ON_SELF_INSIDE =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="DEFAULT_ERRORS_TO_HANDLE_OUTSIDE_TRANSACTION-constant" class="">DEFAULT_ERRORS_TO_HANDLE_OUTSIDE_TRANSACTION =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>RecordInvalid</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="DEFAULT_ERRORS_PREPARE_ON_SELF_OUTSIDE-constant" class="">DEFAULT_ERRORS_PREPARE_ON_SELF_OUTSIDE =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>RecordInvalid</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ERRORS_TO_DISALLOW_INSIDE_TRANSACTION-constant" class="">ERRORS_TO_DISALLOW_INSIDE_TRANSACTION =
+          <div class="docstring">
+  <div class="discussion">
+    <p>These errors (and possibly others) will invalidate the transaction (on PostgreSQL and possibly other databases).<br />
+This means that if you did rescue them inside a transaction (or a nested transaction) all subsequent queries would fail.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span>
+  <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>RecordInvalid</span><span class='comma'>,</span>
+  <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>StatementInvalid</span><span class='comma'>,</span>
+  <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>RecordNotUnique</span>
+<span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="TRANSACTION_METHOD_ARG_NAMES-constant" class="">TRANSACTION_METHOD_ARG_NAMES =
+          <div class="docstring">
+  <div class="discussion">
+    <p>http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/DatabaseStatements.html#method-i-transaction</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='qsymbols_beg'>%i[</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>requires_new</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>isolation</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>joinable</span><span class='words_sep'>
+</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="REQUIRES_NEW-constant" class="">REQUIRES_NEW =
+          
+        </dt>
+        <dd><pre class="code"></pre></dd>
+      
+        <dt id="INSIDE_TRANSACTION_ERROR_HANDLERS-constant" class="">INSIDE_TRANSACTION_ERROR_HANDLERS =
+          
+        </dt>
+        <dd><pre class="code"><span class='qsymbols_beg'>%i[</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>rescued_errors</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>prepared_errors</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>retriable_errors</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>reraisable_errors</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>num_retry_attempts</span><span class='words_sep'>
+</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="OUTSIDE_TRANSACTION_ERROR_HANDLERS-constant" class="">OUTSIDE_TRANSACTION_ERROR_HANDLERS =
+          
+        </dt>
+        <dd><pre class="code"><span class='qsymbols_beg'>%i[</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>outside_rescued_errors</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>outside_prepared_errors</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>outside_retriable_errors</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>outside_reraisable_errors</span><span class='words_sep'>
+</span><span class='words_sep'>  </span><span class='tstring_content'>outside_num_retry_attempts</span><span class='words_sep'>
+</span><span class='tstring_end'>]</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="INSIDE_CONTEXT-constant" class="">INSIDE_CONTEXT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>inside</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="OUTSIDE_CONTEXT-constant" class="">OUTSIDE_CONTEXT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>outside</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="VERSION-constant" class="">VERSION =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Current gem version exposed at the traditional constant location.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Transactionable/Version.html" title="Activerecord::Transactionable::Version (module)">Version</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Transactionable/Version.html#VERSION-constant" title="Activerecord::Transactionable::Version::VERSION (constant)">VERSION</a></span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transaction_wrapper-instance_method" title="#transaction_wrapper (instance method)">#<strong>transaction_wrapper</strong>(**args, &amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+    
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="transaction_wrapper-instance_method">
+  
+    #<strong>transaction_wrapper</strong>(**args, &amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+287
+288
+289</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/activerecord/transactionable.rb', line 287</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_transaction_wrapper'>transaction_wrapper</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_transaction_wrapper'>transaction_wrapper</span><span class='lparen'>(</span><span class='label'>object:</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Sun Sep 13 18:42:46 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.45 (ruby-4.0.6).
+</div>
+
+    </div>
+  </body>
+</html>

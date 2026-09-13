@@ -15,3 +15,5 @@ eval_gemfile("modular/optional.gemfile")
 eval_gemfile("modular/style.gemfile")
 
 eval_gemfile("modular/x_std_libs.gemfile")
+
+eval_gemfile("modular/activerecord_support_modern.gemfile")

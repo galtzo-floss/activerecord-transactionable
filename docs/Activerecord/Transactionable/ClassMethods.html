@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Activerecord::Transactionable::ClassMethods
+  
+    &mdash; Documentation by YARD 0.9.45
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
+
+<script type="text/javascript">
+  pathId = "Activerecord::Transactionable::ClassMethods";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Activerecord.html" title="Activerecord (module)">Activerecord</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Transactionable.html" title="Activerecord::Transactionable (module)">Transactionable</a></span></span>
+     &raquo; 
+    <span class="title">ClassMethods</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Activerecord::Transactionable::ClassMethods
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/activerecord/transactionable.rb
+</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transaction_wrapper-instance_method" title="#transaction_wrapper (instance method)">#<strong>transaction_wrapper</strong>(object: nil, **args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+    
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="transaction_wrapper-instance_method">
+  
+    #<strong>transaction_wrapper</strong>(object: nil, **args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/activerecord/transactionable.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_transaction_wrapper'>transaction_wrapper</span><span class='lparen'>(</span><span class='label'>object:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_lock'>lock</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:lock</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_inside_args'>inside_args</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_args'>extract_args</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Transactionable.html#INSIDE_TRANSACTION_ERROR_HANDLERS-constant" title="Activerecord::Transactionable::INSIDE_TRANSACTION_ERROR_HANDLERS (constant)">INSIDE_TRANSACTION_ERROR_HANDLERS</a></span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_outside_args'>outside_args</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_args'>extract_args</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Transactionable.html#OUTSIDE_TRANSACTION_ERROR_HANDLERS-constant" title="Activerecord::Transactionable::OUTSIDE_TRANSACTION_ERROR_HANDLERS (constant)">OUTSIDE_TRANSACTION_ERROR_HANDLERS</a></span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_transaction_args'>transaction_args</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_args'>extract_args</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Transactionable.html#TRANSACTION_METHOD_ARG_NAMES-constant" title="Activerecord::Transactionable::TRANSACTION_METHOD_ARG_NAMES (constant)">TRANSACTION_METHOD_ARG_NAMES</a></span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_transaction_open'>transaction_open</span> <span class='op'>=</span> <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span><span class='period'>.</span><span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_transaction_open?'>transaction_open?</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_content'> does not know how to handle arguments: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../Transactionable.html#ERRORS_TO_DISALLOW_INSIDE_TRANSACTION-constant" title="Activerecord::Transactionable::ERRORS_TO_DISALLOW_INSIDE_TRANSACTION (constant)">ERRORS_TO_DISALLOW_INSIDE_TRANSACTION</a></span></span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_error'>error</span><span class='op'>|</span>
+    <span class='id identifier rubyid_inside_args'>inside_args</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_error'>error</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_content'> should not rescue </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../Transactionable.html#ERRORS_TO_DISALLOW_INSIDE_TRANSACTION-constant" title="Activerecord::Transactionable::ERRORS_TO_DISALLOW_INSIDE_TRANSACTION (constant)">ERRORS_TO_DISALLOW_INSIDE_TRANSACTION</a></span></span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> inside a transaction: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_inside_args'>inside_args</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_transaction_open'>transaction_open</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_transaction_args'>transaction_args</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../Transactionable.html#REQUIRES_NEW-constant" title="Activerecord::Transactionable::REQUIRES_NEW (constant)">REQUIRES_NEW</a></span></span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_content'>.transaction_wrapper] Will start a nested transaction.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_transaction_args'>transaction_args</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../Transactionable.html#REQUIRES_NEW-constant" title="Activerecord::Transactionable::REQUIRES_NEW (constant)">REQUIRES_NEW</a></span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span>
+      <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_content'>.transaction_wrapper] Opening a nested transaction. Setting </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../Transactionable.html#REQUIRES_NEW-constant" title="Activerecord::Transactionable::REQUIRES_NEW (constant)">REQUIRES_NEW</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>: true</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_error_handler_outside_transaction'>error_handler_outside_transaction</span><span class='lparen'>(</span>
+    <span class='label'>object:</span> <span class='id identifier rubyid_object'>object</span><span class='comma'>,</span>
+    <span class='label'>transaction_open:</span> <span class='id identifier rubyid_transaction_open'>transaction_open</span><span class='comma'>,</span>
+    <span class='op'>**</span><span class='id identifier rubyid_outside_args'>outside_args</span>
+  <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_outside_is_retry'>outside_is_retry</span><span class='op'>|</span>
+    <span class='id identifier rubyid_run_inside_transaction_block'>run_inside_transaction_block</span><span class='lparen'>(</span>
+      <span class='label'>transaction_args:</span> <span class='id identifier rubyid_transaction_args'>transaction_args</span><span class='comma'>,</span>
+      <span class='label'>inside_args:</span> <span class='id identifier rubyid_inside_args'>inside_args</span><span class='comma'>,</span>
+      <span class='label'>lock:</span> <span class='id identifier rubyid_lock'>lock</span><span class='comma'>,</span>
+      <span class='label'>transaction_open:</span> <span class='id identifier rubyid_transaction_open'>transaction_open</span><span class='comma'>,</span>
+      <span class='label'>object:</span> <span class='id identifier rubyid_object'>object</span>
+    <span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_is_retry'>is_retry</span><span class='op'>|</span>
+      <span class='comment'># regardless of the retry being inside or outside the transaction, it is still a retry.
+</span>      <span class='kw'>yield</span> <span class='id identifier rubyid_outside_is_retry'>outside_is_retry</span> <span class='op'>||</span> <span class='id identifier rubyid_is_retry'>is_retry</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Sun Sep 13 18:42:46 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.45 (ruby-4.0.6).
+</div>
+
+    </div>
+  </body>
+</html>
