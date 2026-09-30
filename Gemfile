@@ -18,16 +18,16 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from activerecord-transactionable.gemspec
 gemspec
 
-gem "kettle-family", "~> 1.3", ">= 1.3.1"
+gem "kettle-family", "~> 1.3", ">= 1.3.3"
 
 # Local workspace dependency wiring for *_local.gemfile overrides
-gem "nomono", "~> 1.1", ">= 1.1.5", require: false # ruby >= 3.2.0
+gem "nomono", "~> 1.1", ">= 1.1.6", require: false # ruby >= 3.2.0
 
 # Templating (env-switched: STRUCTUREDMERGE_DEV=/path/to/structuredmerge/ruby/gems for local paths)
 eval_gemfile "gemfiles/modular/templating.gemfile" if ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?
 # Default local test bundle
 eval_gemfile "gemfiles/modular/activerecord_support_modern.gemfile"
-gem "activerecord", "~> 7.2.2", ">= 7.2.2.2" # CVE: ANSI escape injection in AR logging, fixed in 7.2.2.2
+gem "activerecord", "~> 7.2"
 
 # Debugging
 eval_gemfile "gemfiles/modular/debug.gemfile"
