@@ -70,9 +70,32 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://gitlab.com/galtzo-floss/activerecord-transactionable/-/compare/HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/galtzo-floss/activerecord-transactionable/compare/v3.0.4...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
+
+<h3 id="changed">Changed</h3>
+
+<h3 id="deprecated">Deprecated</h3>
+
+<h3 id="removed">Removed</h3>
+
+<h3 id="fixed">Fixed</h3>
+
+<h3 id="security">Security</h3>
+
+<h2 id="304---2026-10-01">
+<a href="https://github.com/galtzo-floss/activerecord-transactionable/compare/c40965018cee7546e62249006e2f41784cde8142...v3.0.4">3.0.4</a> - 2026-10-01</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/galtzo-floss/activerecord-transactionable/releases/tag/v3.0.4">v3.0.4</a>
+</li>
+  <li>COVERAGE: 97.93% – 142/145 lines in 3 files</li>
+  <li>BRANCH COVERAGE: 88.64% – 39/44 branches in 3 files</li>
+  <li>51.52% documented</li>
+</ul>
+
+<h3 id="added-1">Added</h3>
 
 <ul>
   <li>kettle-jem-template-20260720-005 - README Support &amp; Community links now<br>
@@ -80,11 +103,19 @@ include RubyForum.</li>
   <li>kettle-jem-template-20260726-001 - Projects now include YARD lint<br>
 configuration and documentation dependencies so documentation issues fail<br>
 before generated docs are refreshed.</li>
-  <li>kettle-jem-template-20260727-001 - Spec harness documentation now lists the<br>
-RSpec helpers provided by <code>kettle-test</code>.</li>
+  <li>
+    <p>kettle-jem-template-20260727-001 - Spec harness documentation now lists the<br>
+RSpec helpers provided by <code>kettle-test</code>.</p>
+  </li>
+  <li>kettle-jem-template-20260913-001 - Templating now also surfaces a review<br>
+entry in <code>dependency_conflicts.resolve</code> when a direct development<br>
+dependency doesn’t support one or more of this project’s declared<br>
+<code>engines:</code> and has no template-managed modular home (e.g. <code>sqlite3</code> on<br>
+<code>jruby</code>). Review each entry and pick a resolution per the project’s own<br>
+engine support needs.</li>
 </ul>
 
-<h3 id="changed">Changed</h3>
+<h3 id="changed-1">Changed</h3>
 
 <ul>
   <li>kettle-jem-template-20260716-002 - Gemspecs now ship fewer repository-only<br>
@@ -101,24 +132,22 @@ installing the main Gemfile bundle.</li>
     <p>kettle-jem-template-20260801-001 - Generated README gem dashboard links now<br>
 use ClickGems instead of BestGems.</p>
   </li>
-  <li>[kc] kettle-jem/prepare: updated 10 project files:
+  <li>[kc] kettle-jem/prepare: updated 15 project files:
     <ul>
-      <li>dependencies (10)</li>
+      <li>dependencies (15)</li>
     </ul>
   </li>
-  <li>[kc] kettle-jem/template: updated 5 project files:
+  <li>[kc] kettle-jem/template: updated 38 project files:
     <ul>
-      <li>dependencies (4)</li>
-      <li>other (1)</li>
+      <li>code and tests (1)</li>
+      <li>dependencies (6)</li>
+      <li>other (2)</li>
+      <li>workflows (29)</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="deprecated">Deprecated</h3>
-
-<h3 id="removed">Removed</h3>
-
-<h3 id="fixed">Fixed</h3>
+<h3 id="fixed-1">Fixed</h3>
 
 <ul>
   <li>kettle-jem-template-20260720-003 - StructuredMerge Git diff driver config now<br>
@@ -166,7 +195,7 @@ preserving comments and trailing commas during template updates.</p>
   <li>Restore the default ActiveRecord test matrix removed by an earlier template pass.</li>
 </ul>
 
-<h3 id="security">Security</h3>
+<h3 id="security-1">Security</h3>
 
 <ul>
   <li>Raised the <code>activerecord</code> floor to <code>~&gt; 7.2.2, &gt;= 7.2.2.2</code> in the Gemfile. The<br>

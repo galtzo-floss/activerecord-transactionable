@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.0.4] - 2026-10-01
+
+- TAG: [v3.0.4][3.0.4t]
+- COVERAGE: 97.93% -- 142/145 lines in 3 files
+- BRANCH COVERAGE: 88.64% -- 39/44 branches in 3 files
+- 51.52% documented
+
+### Added
+
 - kettle-jem-template-20260720-005 - README Support & Community links now
   include RubyForum.
 - kettle-jem-template-20260726-001 - Projects now include YARD lint
@@ -58,10 +77,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - dependencies (6)
   - other (2)
   - workflows (29)
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -115,4 +130,6 @@ Please file a bug if you notice a violation of semantic versioning.
   fixed upstream in 7.2.2.2. The resolved/locked version was already patched;
   this closes the gap so a future `bundle update` cannot regress into it.
 
-[Unreleased]: https://gitlab.com/galtzo-floss/activerecord-transactionable/-/compare/HEAD
+[Unreleased]: https://github.com/galtzo-floss/activerecord-transactionable/compare/v3.0.4...HEAD
+[3.0.4]: https://github.com/galtzo-floss/activerecord-transactionable/compare/c40965018cee7546e62249006e2f41784cde8142...v3.0.4
+[3.0.4t]: https://github.com/galtzo-floss/activerecord-transactionable/releases/tag/v3.0.4
