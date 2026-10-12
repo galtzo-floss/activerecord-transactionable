@@ -1,4 +1,13 @@
 {
+  "- ruby: \"ruby\"\nappraisal: \"current\"": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        40,
+        46
+      ]
+    }
+  ],
   "action: remove_modular_gem\nreason: \"The gemspec owns the project's documentation dependency.\"": [
     {
       "file": ".structuredmerge/kettle-jem.yml",
@@ -6,6 +15,15 @@
         112,
         122,
         127
+      ]
+    }
+  ],
+  "config: .licenserc.yaml\nmode: \"check\"": [
+    {
+      "file": ".github/workflows/license-eye.yml",
+      "lines": [
+        49,
+        62
       ]
     }
   ],
