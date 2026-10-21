@@ -1,4 +1,7 @@
 {
+  "gemfiles/modular/style_local.gemfile:334960219": [
+    [71, 23, 20, "Style/SafeNavigation: Use safe navigation (`&.`) instead of checking if an object exists before calling the method.", 1851388465]
+  ],
   "spec/activerecord/transactionable_spec.rb:2911504454": [
     [6, 11, 28, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 4065370886],
     [16, 37, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
