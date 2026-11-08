@@ -13,8 +13,12 @@ gem_version =
     # See: https://github.com/panorama-ed/memo_wise/pull/397
     Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/activerecord/transactionable/version.rb", mod) }::Activerecord::Transactionable::Version::VERSION
   else
-    require_relative "lib/activerecord/transactionable/version"
-    Activerecord::Transactionable::Version::VERSION
+    # Ruby < 3.1: Kernel.load(path, module) is unavailable, but Module#module_eval with file
+    # metadata works on Ruby 2.2+. Anonymous loading matters beyond coverage: evaluating this
+    # gemspec (e.g. by bundler/setup in a subprocess) must not define top-level constants,
+    # which isolated-loading specs assert on.
+    version_path = "#{__dir__}/lib/activerecord/transactionable/version.rb"
+    Module.new.tap { |mod| mod.module_eval(File.read(version_path), version_path, 1) }::Activerecord::Transactionable::Version::VERSION
   end
 
 Gem::Specification.new do |spec|
@@ -62,7 +66,7 @@ Gem::Specification.new do |spec|
   gemspec_root = __dir__
   relative_package_path = lambda do |path|
     prefix = "#{gemspec_root}/"
-    path[0, prefix.length] == prefix ? path[prefix.length..-1] : path
+    (path[0, prefix.length] == prefix) ? path[prefix.length..-1] : path
   end
   enumerate_package_glob = lambda do |glob|
     files = []
@@ -92,7 +96,7 @@ Gem::Specification.new do |spec|
     # Executables and executable support scripts
     *enumerate_package_files.call("exe"),
     *enumerate_package_glob.call(File.join(gemspec_root, "LICENSE.txt"))
-  ]
+  ].grep_v(%r{\.(?:bundle|so|dylib|dll|o|a)\z})
   spec.rdoc_options += [
     "--title",
     "#{spec.name} - #{spec.summary}",
@@ -112,7 +116,7 @@ Gem::Specification.new do |spec|
   # Utilities
   spec.add_dependency("activemodel", ">= 5.2.8.1")
   spec.add_dependency("activerecord", ">= 5.2.8.1")
-  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.15")              # ruby >= 2.2.0
+  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.17")              # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability.
@@ -128,7 +132,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.20")             # ruby >= 2.5.0
+  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.28")             # ruby >= 2.5.0
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
@@ -141,9 +145,9 @@ Gem::Specification.new do |spec|
 
   # Testing
   # Loads version files in anonymous namespaces for coverage without constant redefinition warnings.
-  spec.add_development_dependency("anonymous_loader", "~> 0.1", ">= 0.1.3")         # ruby >= 2.2.0
+  spec.add_development_dependency("anonymous_loader", "~> 0.1", ">= 0.1.5")         # ruby >= 2.2.0
   spec.add_development_dependency("appraisal2", "~> 3.2", ">= 3.2.6")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
-  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.27")            # ruby >= 2.5.0
+  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.29")            # ruby >= 2.5.0
   spec.add_development_dependency("turbo_tests2", "~> 4.0", ">= 4.0.0")           # ruby >= 2.4.0, default kettle-test runner
 
   # Releasing
