@@ -34,9 +34,12 @@ gem "nomono", "~> 1.1", ">= 1.1.18", require: false # ruby >= 3.2.0
 # (env-switched: STRUCTUREDMERGE_DEV=/path/to/structuredmerge/ruby/gems for local paths)
 
 eval_gemfile "gemfiles/modular/templating.gemfile" if
+# kettle-jem:freeze
 # Default local test bundle
 eval_gemfile "gemfiles/modular/activerecord_support_modern.gemfile"
-gem "activerecord", "~> 7.2"
+# GHSA-8474-xrp6-wh69: DoS in Active Support safe_constantize; no 7.2.x patch, fixed in 8.0.5.2 / 8.1.4.1
+gem "activerecord", "~> 8.1", ">= 8.1.4.1"
+# kettle-jem:unfreeze
 
 ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero? ||
   ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false") != 0 ||
